@@ -416,12 +416,30 @@ int                 idles[MAX_IDLES]        = {ANI_IDLE};
 
 int                 falls[MAX_ATKS] =
 {
-    ANI_FALL,  ANI_FALL2, ANI_FALL3,  ANI_FALL4,
-    ANI_FALL,  ANI_BURN,  ANI_FALL,   ANI_SHOCK,
-    ANI_FALL,  ANI_FALL5, ANI_FALL6,  ANI_FALL7,
-    ANI_FALL8, ANI_FALL9, ANI_FALL10, ANI_FALL,
-    ANI_FALL,  ANI_FALL,  ANI_FALL,   ANI_FALLLOSE,
-    ANI_FALL
+    ANI_FALL,       // ATK_NORMAL
+    ANI_FALL2,      // ATK_NORMAL2
+    ANI_FALL3,      // ATK_NORMAL3
+    ANI_FALL4,      // ATK_NORMAL4
+    ANI_FALL,       // ATK_BLAST
+    ANI_BURN,       // ATK_BURN
+    ANI_FALL,       // ATK_FREEZE 
+    ANI_SHOCK,      // ATK_SHOCK
+    ANI_FALL,       // ATK_STEAL 
+    ANI_FALL5,      // ATK_NORMAL5
+    ANI_FALL6,      // ATK_NORMAL6
+    ANI_FALL7,      // ATK_NORMAL7
+    ANI_FALL8,      // ATK_NORMAL8
+    ANI_FALL9,      // ATK_NORMAL9
+    ANI_FALL10,     // ATK_NORMAL10
+    ANI_FALL,       // ATK_BOSS DEATH
+    ANI_FALL,       // ATK_ITEM
+    ANI_FALL,       // ATK_LAND
+    ANI_FALL,       // ATK_LIFESPAN
+    ANI_FALLLOSE,   // ATK_LOSE
+    ANI_FALL,       // ATK_PIT
+    ANI_FALL,       // ATK_SUB_ENTITY_PARENT_KILL
+    ANI_FALL,       // ATK_SUB_ENTITY_UNSUMMON
+    ANI_FALL        // ATK_TIMEOVER
 };
 
 int                 backfalls[MAX_ATKS] =
@@ -431,7 +449,7 @@ int                 backfalls[MAX_ATKS] =
     ANI_BACKFALL,  ANI_BACKFALL5, ANI_BACKFALL6,  ANI_BACKFALL7,
     ANI_BACKFALL8, ANI_BACKFALL9, ANI_BACKFALL10, ANI_BACKFALL,
     ANI_BACKFALL,  ANI_BACKFALL,  ANI_BACKFALL,   ANI_FALLLOSE,
-    ANI_BACKFALL
+    ANI_BACKFALL,  ANI_BACKFALL,  ANI_BACKFALL,   ANI_BACKFALL
 };
 
 int                 rises[MAX_ATKS] =
@@ -441,7 +459,7 @@ int                 rises[MAX_ATKS] =
     ANI_RISE,  ANI_RISE5, ANI_RISE6,  ANI_RISE7,
     ANI_RISE8, ANI_RISE9, ANI_RISE10, ANI_RISE,
     ANI_RISE,  ANI_RISE,  ANI_RISE,   ANI_RISE,
-    ANI_RISE
+    ANI_RISE,  ANI_RISE,  ANI_RISE,   ANI_RISE
 };
 
 int                 backrises[MAX_ATKS] =
@@ -451,7 +469,7 @@ int                 backrises[MAX_ATKS] =
     ANI_BACKRISE,  ANI_BACKRISE5, ANI_BACKRISE6,  ANI_BACKRISE7,
     ANI_BACKRISE8, ANI_BACKRISE9, ANI_BACKRISE10, ANI_BACKRISE,
     ANI_BACKRISE,  ANI_BACKRISE,  ANI_BACKRISE,   ANI_BACKRISE,
-    ANI_BACKRISE
+    ANI_BACKRISE,  ANI_BACKRISE,  ANI_BACKRISE,   ANI_BACKRISE
 };
 
 int                 riseattacks[MAX_ATKS] =
@@ -461,7 +479,7 @@ int                 riseattacks[MAX_ATKS] =
     ANI_RISEATTACK,  ANI_RISEATTACK5, ANI_RISEATTACK6,  ANI_RISEATTACK7,
     ANI_RISEATTACK8, ANI_RISEATTACK9, ANI_RISEATTACK10, ANI_RISEATTACK,
     ANI_RISEATTACK,  ANI_RISEATTACK,  ANI_RISEATTACK,   ANI_RISEATTACK,
-    ANI_RISEATTACK
+    ANI_RISEATTACK,  ANI_RISEATTACK,  ANI_RISEATTACK,   ANI_RISEATTACK
 };
 
 int                 backriseattacks[MAX_ATKS] =
@@ -471,7 +489,7 @@ int                 backriseattacks[MAX_ATKS] =
     ANI_BACKRISEATTACK,  ANI_BACKRISEATTACK5, ANI_BACKRISEATTACK6,  ANI_BACKRISEATTACK7,
     ANI_BACKRISEATTACK8, ANI_BACKRISEATTACK9, ANI_BACKRISEATTACK10, ANI_BACKRISEATTACK,
     ANI_BACKRISEATTACK,  ANI_BACKRISEATTACK,  ANI_BACKRISEATTACK,   ANI_BACKRISEATTACK,
-    ANI_BACKRISEATTACK
+    ANI_BACKRISEATTACK,  ANI_BACKRISEATTACK,  ANI_BACKRISEATTACK,   ANI_BACKRISEATTACK
 };
 
 int                 pains[MAX_ATKS] =
@@ -481,7 +499,7 @@ int                 pains[MAX_ATKS] =
     ANI_PAIN,  ANI_PAIN5,    ANI_PAIN6,  ANI_PAIN7,
     ANI_PAIN8, ANI_PAIN9,    ANI_PAIN10, ANI_PAIN,
     ANI_PAIN,  ANI_PAIN,     ANI_PAIN,   ANI_PAIN,
-    ANI_PAIN
+    ANI_PAIN,  ANI_PAIN,     ANI_PAIN,   ANI_PAIN
 };
 
 int                 backpains[MAX_ATKS] =
@@ -491,7 +509,7 @@ int                 backpains[MAX_ATKS] =
     ANI_BACKPAIN,  ANI_BACKPAIN5,    ANI_BACKPAIN6,  ANI_BACKPAIN7,
     ANI_BACKPAIN8, ANI_BACKPAIN9,    ANI_BACKPAIN10, ANI_BACKPAIN,
     ANI_BACKPAIN,  ANI_BACKPAIN,     ANI_BACKPAIN,   ANI_BACKPAIN,
-    ANI_BACKPAIN
+    ANI_BACKPAIN,  ANI_BACKPAIN,     ANI_BACKPAIN,   ANI_BACKPAIN
 };
 
 int                 deaths[MAX_ATKS] =
@@ -501,7 +519,7 @@ int                 deaths[MAX_ATKS] =
     ANI_DIE,   ANI_DIE5,     ANI_DIE6,  ANI_DIE7,
     ANI_DIE8,  ANI_DIE9,     ANI_DIE10, ANI_DIE,
     ANI_DIE,   ANI_DIE,      ANI_DIE,   ANI_LOSE,
-    ANI_DIE
+    ANI_DIE,   ANI_DIE,      ANI_DIE,   ANI_DIE
 };
 
 int                 backdeaths[MAX_ATKS] =
@@ -511,7 +529,7 @@ int                 backdeaths[MAX_ATKS] =
     ANI_BACKDIE,   ANI_BACKDIE5,     ANI_BACKDIE6,  ANI_BACKDIE7,
     ANI_BACKDIE8,  ANI_BACKDIE9,     ANI_BACKDIE10, ANI_BACKDIE,
     ANI_BACKDIE,   ANI_BACKDIE,      ANI_BACKDIE,   ANI_LOSE,
-    ANI_BACKDIE
+    ANI_BACKDIE,   ANI_BACKDIE,      ANI_BACKDIE,   ANI_BACKDIE
 };
 
 int                 blkpains[MAX_ATKS] =
@@ -521,7 +539,7 @@ int                 blkpains[MAX_ATKS] =
     ANI_BLOCKPAIN,  ANI_BLOCKPAIN5, ANI_BLOCKPAIN6,  ANI_BLOCKPAIN7,
     ANI_BLOCKPAIN8, ANI_BLOCKPAIN9, ANI_BLOCKPAIN10, ANI_BLOCKPAIN,
     ANI_BLOCKPAIN,  ANI_BLOCKPAIN,  ANI_BLOCKPAIN,   ANI_BLOCKPAIN,
-    ANI_BLOCKPAIN
+    ANI_BLOCKPAIN,  ANI_BLOCKPAIN,  ANI_BLOCKPAIN,   ANI_BLOCKPAIN
 };
 
 int                 backblkpains[MAX_ATKS] =
@@ -531,7 +549,7 @@ int                 backblkpains[MAX_ATKS] =
     ANI_BACKBLOCKPAIN,  ANI_BACKBLOCKPAIN5, ANI_BACKBLOCKPAIN6,  ANI_BACKBLOCKPAIN7,
     ANI_BACKBLOCKPAIN8, ANI_BACKBLOCKPAIN9, ANI_BACKBLOCKPAIN10, ANI_BACKBLOCKPAIN,
     ANI_BACKBLOCKPAIN,  ANI_BACKBLOCKPAIN,  ANI_BACKBLOCKPAIN,   ANI_BACKBLOCKPAIN,
-    ANI_BACKBLOCKPAIN
+    ANI_BACKBLOCKPAIN,  ANI_BACKBLOCKPAIN,  ANI_BACKBLOCKPAIN,   ANI_BACKBLOCKPAIN
 };
 
 int                 normal_attacks[MAX_ATTACKS] =
@@ -9440,7 +9458,7 @@ char *get_cached_model_path(char *name)
 
 static void _readbarstatus(char *, s_barstatus *);
 
-static int translate_attack_type(char *command)
+static int translate_attack_type(char* command, char* filename)
 {
     int atk_id = -1, tempInt;
 
@@ -9498,13 +9516,17 @@ static int translate_attack_type(char *command)
         atk_id  = ATK_LOSE;
         break;
     case CMD_MODEL_COLLISION_ETC:
-        tempInt = atoi(command + 6); // White Dragon: 6 is "ATTACK" string length
+        
+        tempInt = get_attack_type_from_string(command, filename);
+        
+        //tmpInt = atoi(command + 6); // White Dragon: 6 is "ATTACK" string length
 		
 		if(tempInt < MAX_ATKS - STA_ATKS + 1)
         {
             tempInt = MAX_ATKS - STA_ATKS + 1;
         }
-        atk_id = tempInt + STA_ATKS - 1;
+        atk_id = tempInt + STA_ATKS - 1;        
+
         break;
     default:
         break;
@@ -15781,31 +15803,8 @@ s_model *load_cached_model(char *name, char *owner, char unload)
 
 				value = GET_ARG(1);
 
-                if (stricmp(value, "blast") == 0)
-                {
-                    tempInt = ATK_BLAST;
-                }
-				else if (stricmp(value, "burn") == 0)
-				{
-                    tempInt = ATK_BURN;
-                }
-				else if(stricmp(value, "freeze") == 0)
-				{
-                    tempInt = ATK_FREEZE;
-				}
-				else if (stricmp(value, "shock") == 0)
-				{
-                    tempInt = ATK_SHOCK;
-				}
-				else if (stricmp(value, "steal") == 0)
-				{
-                    tempInt = ATK_STEAL;
-				}
-				else
-				{
-                    tempInt = GET_INT_ARG(1);
-				}
-
+                tempInt = get_attack_type_from_string(value, filename);
+                
                 collision_attack_upsert_property(&temp_collision_head, temp_collision_index)->attack_type = tempInt;
 
                 tempInt = 0;
@@ -15876,34 +15875,7 @@ s_model *load_cached_model(char *name, char *owner, char unload)
 
                 value = GET_ARG(1);
 
-                if (stricmp(value, "same") == 0)
-                {
-                    tempInt = ATK_NONE;
-                }
-                else if (stricmp(value, "blast") == 0)
-                {
-                    tempInt = ATK_BLAST;
-                }
-                else if (stricmp(value, "burn") == 0)
-                {
-                    tempInt = ATK_BURN;
-                }
-                else if (stricmp(value, "freeze") == 0)
-                {
-                    tempInt = ATK_FREEZE;
-                }
-                else if (stricmp(value, "shock") == 0)
-                {
-                    tempInt = ATK_SHOCK;
-                }
-                else if (stricmp(value, "steal") == 0)
-                {
-                    tempInt = ATK_STEAL;
-                }
-                else
-                {
-                    tempInt = GET_INT_ARG(1);
-                }
+                tempInt = get_attack_type_from_string(value, filename);                
 
                 collision_attack_upsert_recursive_property(&temp_collision_head, temp_collision_index)->type = tempInt;
 
@@ -16240,6 +16212,11 @@ s_model *load_cached_model(char *name, char *owner, char unload)
 
                 collision_attack_upsert_property(&temp_collision_head, temp_collision_index);
 
+                /*
+                * "none" deactivates attack on this and subsequent frames.
+                * The attack loading system interprets 0 for all coordinates 
+                * as no attack and will not load to memory.
+                */
                 value = GET_ARG(1);
                 if (stricmp(value, "none") == 0)
                 {
@@ -16373,13 +16350,14 @@ s_model *load_cached_model(char *name, char *owner, char unload)
                     break;
 
                 default:
-                    tempInt = atoi(command + 6);
-                    if(tempInt < MAX_ATKS - STA_ATKS + 1)
-                    {
-                        tempInt = MAX_ATKS - STA_ATKS + 1;
-                    }
 
-                    collision_attack_upsert_property(&temp_collision_head, temp_collision_index)->attack_type = tempInt + STA_ATKS - 1;
+                    //value = GET_ARG(1);
+
+                    tempInt = get_attack_type_from_string(command, filename);
+
+                    collision_attack_upsert_property(&temp_collision_head, temp_collision_index)->attack_type = tempInt;
+
+                    break;
                 }
                 break;
 
@@ -16549,13 +16527,13 @@ s_model *load_cached_model(char *name, char *owner, char unload)
                 {
                     newchar->smartbomb->damage_on_landing.attack_force = GET_INT_ARG(1);
                     newchar->smartbomb->blast = GET_INT_ARG(2);
-                    newchar->smartbomb->damage_on_landing.attack_type = translate_attack_type(GET_ARG(3));
+                    newchar->smartbomb->damage_on_landing.attack_type = translate_attack_type(GET_ARG(3), filename);
                 }
                 else
                 {
                     collision_attack_upsert_property(&temp_collision_head, temp_collision_index)->damage_on_landing.attack_force = GET_INT_ARG(1);
                     collision_attack_upsert_property(&temp_collision_head, temp_collision_index)->blast = GET_INT_ARG(2);
-                    collision_attack_upsert_property(&temp_collision_head, temp_collision_index)->damage_on_landing.attack_type = translate_attack_type(GET_ARG(3));
+                    collision_attack_upsert_property(&temp_collision_head, temp_collision_index)->damage_on_landing.attack_type = translate_attack_type(GET_ARG(3), filename);
                 }
                                 
                 break;
@@ -17969,6 +17947,7 @@ void load_model_constants()
     memcpy(animpains,    pains,          sizeof(*animpains)*MAX_ATKS);
     for(i = MAX_ATKS; i < max_attack_types; i++)
     {
+        //printf("\nInitializing animpains[%d]: setting to new anim ID %d", i, maxanim);
         animpains[i] = maxanim++;
     }
     memcpy(animbackpains,    backpains,          sizeof(*animbackpains)*MAX_ATKS);
@@ -33550,99 +33529,291 @@ s_defense* defense_find_current_object(entity* ent, s_body* body_object, e_attac
     return (s_defense *)&default_defense;
 }
 
+// attack_type_map.h
+
+#ifndef ATTACK_TYPE_MAP_H
+#define ATTACK_TYPE_MAP_H
+
+typedef struct {
+    const char* name;
+    e_attack_types attack_type;
+} s_attack_type_map;
+
+static const s_attack_type_map attack_type_map[] = {
+    { "NORMAL", ATK_NORMAL },
+    { "NORMAL0", ATK_NORMAL },
+    { "NORMAL1", ATK_NORMAL },
+    { "NORMAL2", ATK_NORMAL2 },
+    { "NORMAL3", ATK_NORMAL3 },
+    { "NORMAL4", ATK_NORMAL4 },
+    { "NORMAL5", ATK_NORMAL5 },
+    { "NORMAL6", ATK_NORMAL6 },
+    { "NORMAL7", ATK_NORMAL7 },
+    { "NORMAL8", ATK_NORMAL8 },
+    { "NORMAL9", ATK_NORMAL9 },
+    { "NORMAL10", ATK_NORMAL10 },
+    { "BLAST", ATK_BLAST },
+    { "STEAL", ATK_STEAL },
+    { "BURN", ATK_BURN },
+    { "SHOCK", ATK_SHOCK },
+    { "FREEZE", ATK_FREEZE },
+    { "BOSS_DEATH", ATK_BOSS_DEATH },
+    { "ITEM", ATK_ITEM },
+    { "LAND", ATK_LAND },
+    { "LIFESPAN", ATK_LIFESPAN },
+    { "LOSE", ATK_LOSE },
+    { "PIT", ATK_PIT },
+    { "SUB_ENTITY_PARENT_KILL", ATK_SUB_ENTITY_PARENT_KILL },
+    { "SUB_ENTITY_UNSUMMON", ATK_SUB_ENTITY_UNSUMMON },
+    { "TIMEOVER", ATK_TIMEOVER }
+};
+
+#define ATTACK_TYPE_MAP_SIZE (sizeof(attack_type_map) / sizeof(attack_type_map[0]))
+
+#endif // ATTACK_TYPE_MAP_H
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <errno.h>
+
+/*
+ * Converts a string into a valid attack type index.
+ *
+ * Input formats supported:
+ *   - A case-insensitive match to a predefined attack name in attack_type_map[]
+ *   - A numeric string (e.g., "3"), interpreted as a 1-based index
+ *   - A special case-insensitive prefix format:
+ *       "normal<int>" or "attack<int>", where <int> is an integer value
+ *
+ * Behavior:
+ *   - The function first checks against known names in attack_type_map.
+ *   - If not found, it looks for "attack" or "normal" prefixes and parses the suffix.
+ *   - If still unresolved, it attempts to parse the entire input as a numeric string.
+ *   - In all cases, the resulting attack type is adjusted to be 0-based.
+ *   - If the final index exceeds max_attack_types or is invalid, it falls back to 0.
+ */
+int get_attack_type_from_string(const char* value, const char* filename)
+{
+    const char* prefixes[] = { "normal", "attack" };
+    const size_t num_prefixes = sizeof(prefixes) / sizeof(prefixes[0]);
+    char normalized_input[64];
+    char* endptr = NULL;
+    long val = -1;
+    int parsed_type = -1;
+    const char* input = value;
+
+    //printf("\n\nParsing attack type from string '%s' (file: %s)\n", value, filename);
+
+    // =========================================================================
+    // Step 1: Normalize known prefixes OR numeric-only values into "normal<num>"
+    // =========================================================================
+    // This allows "attack3", "normal3", and even just "3" to resolve through LUT
+    // to entries like "NORMAL3". Special cases like "attack1" now work because
+    // "NORMAL1" is present in the LUT and maps to ATK_NORMAL.
+    for (size_t i = 0; i < num_prefixes; i++) {
+        const char* prefix = prefixes[i];
+        size_t prefix_len = strlen(prefix);
+
+        if (strnicmp(value, prefix, prefix_len) == 0) {
+            if (value[prefix_len] == '\0') {
+                // Case: "attack" or "normal" with no suffix → treat as "normal1"
+                snprintf(normalized_input, sizeof(normalized_input), "normal1");
+            }
+            else if (isdigit((unsigned char)value[prefix_len])) {
+                // Case: "attackX" or "normalX" → normalize to "normalX"
+                snprintf(normalized_input, sizeof(normalized_input), "normal%s", value + prefix_len);
+            }
+            else {
+                continue;
+            }
+
+            input = normalized_input;
+            //printf("Normalized prefixed form '%s' to '%s'\n", value, input);
+            break;
+        }
+    }
+
+    // If no prefix match occurred, check for numeric-only input
+    if (input == value && isdigit((unsigned char)value[0])) {
+        errno = 0;
+        val = strtol(value, &endptr, 10);
+        if (errno == 0 && endptr != value && *endptr == '\0' && val >= 0) {
+            snprintf(normalized_input, sizeof(normalized_input), "normal%ld", val);
+            input = normalized_input;
+            //printf("Normalized numeric-only string '%s' to '%s' for LUT match\n", value, input);
+        }
+    }
+
+    // =========================================================================
+    // Step 2: Lookup the normalized input in attack_type_map
+    // =========================================================================
+    for (size_t i = 0; i < ATTACK_TYPE_MAP_SIZE; i++) {
+        if (stricmp(input, attack_type_map[i].name) == 0) {
+            //printf("Match found in attack_type_map: '%s' => %d\n", input, attack_type_map[i].attack_type);
+            return attack_type_map[i].attack_type;
+        }
+    }
+
+    // =========================================================================
+    // Step 3: If no LUT match, attempt to extract a number from:
+    //         - "normal<num>"
+    //         - "attack<num>"
+    //         - plain "<num>"
+    // =========================================================================
+    const char* numeric_ptr = NULL;
+
+    for (size_t i = 0; i < num_prefixes; i++) {
+        const char* prefix = prefixes[i];
+        size_t len = strlen(prefix);
+
+        if (strnicmp(value, prefix, len) == 0 && isdigit((unsigned char)value[len])) {
+            numeric_ptr = value + len;
+            break;
+        }
+    }
+
+    if (!numeric_ptr && isdigit((unsigned char)value[0])) {
+        numeric_ptr = value;
+    }
+
+    if (numeric_ptr) {
+        errno = 0;
+        val = strtol(numeric_ptr, &endptr, 10);
+        if (errno == 0 && endptr != numeric_ptr && *endptr == '\0' && val >= 0) {
+            parsed_type = (int)val;
+            //printf("Extracted numeric attack type: %d\n", parsed_type);
+        }
+    }
+
+    // =========================================================================
+    // Step 4: Fallback if nothing valid could be parsed
+    // =========================================================================
+    if (parsed_type == -1) {
+        printf("Warning: Could not resolve attack type '%s' in file '%s'. Defaulting to ATK_NORMAL.\n",
+            value, filename);
+        return ATK_NORMAL;
+    }
+
+    // =========================================================================
+    // Step 5: Adjust for 1-based indexing used by designers/scripts
+    // =========================================================================
+    if (parsed_type > 0) {
+        parsed_type--;
+        //printf("Adjusted for 1-based input: %d\n", parsed_type);
+    }
+    else {
+        parsed_type = 0;
+        //printf("Clamped type to 0 due to non-positive value.\n");
+    }
+
+    // =========================================================================
+    // Step 6: Remap into user-defined attack type ID range
+    // =========================================================================
+    const int user_input_cutoff = MAX_ATKS - STA_ATKS + 1;
+    if (parsed_type < user_input_cutoff) {
+        parsed_type = user_input_cutoff;
+        //printf("Input below remap threshold (%d); adjusted to %d\n", user_input_cutoff, parsed_type);
+    }
+
+    parsed_type += STA_ATKS;
+    //printf("Remapped to user-defined attack type ID: %d\n", parsed_type);
+
+    // =========================================================================
+    // Step 7: Final bounds check against engine maximum
+    // =========================================================================
+    if (parsed_type >= max_attack_types) {
+        printf("Warning: Attack type ID %d exceeds max (%d) in file '%s'. Using default.\n",
+            parsed_type, max_attack_types, filename);
+        return ATK_NORMAL;
+    }
+
+    // =========================================================================
+    // Step 8: Success — return resolved attack type ID
+    // =========================================================================
+    return parsed_type;
+}
+
+
+
+
+
 /*
 * Caskey, Damon V.
-* 2021-08-30
-* 
+* 2021-08-30 (Original)
+* 2025-05-04 (Refactor)
+*
 * Read first argument in supplied argument list
 * for type, and determines which attack type or
-* attack types to assign a defense value. 
-*/ 
-void defense_setup_from_arg(char* filename, char* command, s_defense* target_defense, ArgList* arglist, e_defense_parameters target_parameter)
-{
-    //printf("\n\n defense_setup_from_arg(%s, %s, %p, %p, %d)", filename, command, target_defense, arglist, target_parameter);
-
+* attack types to assign a defense value.
+*/
+void defense_setup_from_arg(
+    char* filename,
+    char* command,
+    s_defense* target_defense,
+    ArgList* arglist,
+    e_defense_parameters target_parameter
+) {
     int tempInt = 0;
     int i = 0;
-    char* value = GET_ARGP(1);
-    
+    char* value = GET_ARGP(1);   
+
     /*
-    * Now we need to figure out which attack
-    * type this defense entry applies to.
+    * First try to match the value using the attack type map.
     */
-
-    //printf("\n\t value: %s", value);
-
-#define tempdef(x, y) \
-					    x(stricmp(value, #y)==0) \
-					    { \
-                            defense_apply_setup_to_property(filename, command, &target_defense[ATK_##y], arglist, target_parameter); \
-					    }
-
-    tempdef(if, NORMAL)
-        tempdef(else if, NORMAL2)
-        tempdef(else if, NORMAL3)
-        tempdef(else if, NORMAL4)
-        tempdef(else if, NORMAL5)
-        tempdef(else if, NORMAL6)
-        tempdef(else if, NORMAL7)
-        tempdef(else if, NORMAL8)
-        tempdef(else if, NORMAL9)
-        tempdef(else if, NORMAL10)
-        tempdef(else if, BLAST)
-        tempdef(else if, STEAL)
-        tempdef(else if, BURN)
-        tempdef(else if, SHOCK)
-        tempdef(else if, FREEZE)
-
-        tempdef(else if, BOSS_DEATH)
-        tempdef(else if, ITEM)
-        tempdef(else if, LAND)
-        tempdef(else if, LIFESPAN)
-        tempdef(else if, LOSE)
-        tempdef(else if, PIT)
-        tempdef(else if, SUB_ENTITY_PARENT_KILL)
-        tempdef(else if, SUB_ENTITY_UNSUMMON)
-        tempdef(else if, TIMEOVER)
-
-        else if (starts_with(value, "normal"))
+    for (i = 0; i < ATTACK_TYPE_MAP_SIZE; i++)
+    {
+        if (stricmp(value, attack_type_map[i].name) == 0)
         {
-            get_tail_number(tempInt, value, "normal");
-
-            defense_apply_setup_to_property(filename, command, &target_defense[tempInt + STA_ATKS - 1], arglist, target_parameter);
+            defense_apply_setup_to_property(
+                filename,
+                command,
+                &target_defense[attack_type_map[i].attack_type],
+                arglist,
+                target_parameter
+            );
+            return;
         }
-        else if (stricmp(value, "ALL") == 0)
-        {
-            /*
-            * "All" is a convenience feature so the creator
-            * doesn't need a defense entry for every type
-            * when they want to set up a generic defense
-            * across all attack types.
-            *
-            * To handle this we want to apply defense on
-            * all the attack types other than special types
-            * not normally used by creator. They may say
-            * �all� but they probably don�t mean get stuck
-            * in a pit forever because they're immune to
-            * pit damage! Loop through all types and type
-            * check function. If the type is special, we
-            * skip to the next. Otherwise apply the temporary
-            * values to that attack type to defense.
-            */
+    }
 
-            for (i = 0; i < max_attack_types; i++)
+    /*
+    * If no direct match, check for dynamic "normalN" pattern.
+    */
+    if (starts_with(value, "normal"))
+    {
+        get_tail_number(tempInt, value, "normal");
+
+        defense_apply_setup_to_property(
+            filename,
+            command,
+            &target_defense[tempInt + STA_ATKS - 1],
+            arglist,
+            target_parameter
+        );
+    }
+    /*
+    * Handle "ALL" case—apply to all non-special attack types.
+    */
+    else if (stricmp(value, "ALL") == 0)
+    {
+        for (i = 0; i < max_attack_types; i++)
+        {
+            if (is_attack_type_special(i))
             {
-                if (is_attack_type_special(i))
-                {
-                    continue;
-                }
-
-                defense_apply_setup_to_property(filename, command, &target_defense[i], arglist, target_parameter);
+                continue;
             }
+
+            defense_apply_setup_to_property(
+                filename,
+                command,
+                &target_defense[i],
+                arglist,
+                target_parameter
+            );
         }
-
-#undef tempdef
-
+    }
 }
 
 /*
@@ -33732,81 +33903,71 @@ void offense_free_object(s_offense* target)
 * for type, and determines which attack type or
 * attack types to assign an offense value.
 */
-void offense_setup_from_arg(char* filename, char* command, s_offense* target_offense, ArgList* arglist, e_offense_parameters target_parameter)
-{
+void offense_setup_from_arg(
+    char* filename,
+    char* command,
+    s_offense* target_offense,
+    ArgList* arglist,
+    e_offense_parameters target_parameter
+) {
     int tempInt = 0;
     int i = 0;
     char* value = GET_ARGP(1);
-    
+
     /*
-    * Now we need to figure out which attack
-    * type this offense entry applies to.
+    * First, try to match using the shared attack type map.
     */
-
-#define tempoff(x, y) \
-					    x(stricmp(value, #y)==0)\
-					    {\
-                            offense_apply_setup_to_property(filename, command, &target_offense[ATK_##y], arglist, target_parameter);\
-					    }
-
-    tempoff(if, NORMAL)
-        tempoff(else if, NORMAL2)
-        tempoff(else if, NORMAL3)
-        tempoff(else if, NORMAL4)
-        tempoff(else if, NORMAL5)
-        tempoff(else if, NORMAL6)
-        tempoff(else if, NORMAL7)
-        tempoff(else if, NORMAL8)
-        tempoff(else if, NORMAL9)
-        tempoff(else if, NORMAL10)
-        tempoff(else if, BLAST)
-        tempoff(else if, STEAL)
-        tempoff(else if, BURN)
-        tempoff(else if, SHOCK)
-        tempoff(else if, FREEZE)
-
-        tempoff(else if, BOSS_DEATH)
-        tempoff(else if, ITEM)
-        tempoff(else if, LAND)
-        tempoff(else if, LIFESPAN)
-        tempoff(else if, LOSE)
-        tempoff(else if, PIT)
-        tempoff(else if, SUB_ENTITY_PARENT_KILL)
-        tempoff(else if, SUB_ENTITY_UNSUMMON)
-        tempoff(else if, TIMEOVER)
-
-        else if (starts_with(value, "normal"))
+    for (i = 0; i < ATTACK_TYPE_MAP_SIZE; i++)
+    {
+        if (stricmp(value, attack_type_map[i].name) == 0)
         {
-            get_tail_number(tempInt, value, "normal");
-
-            offense_apply_setup_to_property(filename, command, &target_offense[tempInt + STA_ATKS - 1], arglist, target_parameter);
+            offense_apply_setup_to_property(
+                filename,
+                command,
+                &target_offense[attack_type_map[i].attack_type],
+                arglist,
+                target_parameter
+            );
+            return;
         }
-        else if (stricmp(value, "ALL") == 0)
-        {
-            /*
-            * "All" is a convenience feature so the creator
-            * doesn't need a defense entry for every type
-            * when they want to set up a generic defense
-            * across all attack types.
-            *
-            * To handle this we want to apply offense on
-            * all the attack types other than special types
-            * not normally used by creator. 
-            */
+    }
 
-            for (i = 0; i < max_attack_types; i++)
+    /*
+    * Handle dynamic "normalN" pattern.
+    */
+    if (starts_with(value, "normal"))
+    {
+        get_tail_number(tempInt, value, "normal");
+
+        offense_apply_setup_to_property(
+            filename,
+            command,
+            &target_offense[tempInt + STA_ATKS - 1],
+            arglist,
+            target_parameter
+        );
+    }
+    /*
+    * Handle "ALL" case—apply to all non-special attack types.
+    */
+    else if (stricmp(value, "ALL") == 0)
+    {
+        for (i = 0; i < max_attack_types; i++)
+        {
+            if (is_attack_type_special(i))
             {
-                if (is_attack_type_special(i))
-                {
-                    continue;
-                }
-
-                offense_apply_setup_to_property(filename, command, &target_offense[i], arglist, target_parameter);
+                continue;
             }
+
+            offense_apply_setup_to_property(
+                filename,
+                command,
+                &target_offense[i],
+                arglist,
+                target_parameter
+            );
         }
-
-#undef tempoff
-
+    }
 }
 
 /*
@@ -34107,6 +34268,25 @@ void checkdamageonlanding(entity* acting_entity)
 
 /*
 * Caskey, Damon V.
+* 2025-05-09
+* 
+* LUT of "special" attack types, as
+* in, types normally for internal engine
+* use only.
+*/
+static const int special_attack_table[MAX_ATKS] = {
+    [ATK_BOSS_DEATH] = 1,
+    [ATK_ITEM] = 1,
+    [ATK_LIFESPAN] = 1,
+    [ATK_LOSE] = 1,
+    [ATK_SUB_ENTITY_PARENT_KILL] = 1,
+    [ATK_SUB_ENTITY_UNSUMMON] = 1,
+    [ATK_TIMEOVER] = 1,
+    [ATK_PIT] = 1,
+};
+
+/*
+* Caskey, Damon V.
 * 2019-12-26
 *
 * Return true if attack type is one of the 
@@ -34114,23 +34294,19 @@ void checkdamageonlanding(entity* acting_entity)
 */
 int is_attack_type_special(e_attack_types type)
 {
-	switch (type)
-	{
-	default:
-		return 0;
-        break;
-
-	case ATK_BOSS_DEATH:
-	case ATK_ITEM:
-	case ATK_LIFESPAN:
-	case ATK_LOSE:
-	case ATK_SUB_ENTITY_PARENT_KILL:
-	case ATK_SUB_ENTITY_UNSUMMON:
-	case ATK_TIMEOVER:
-	case ATK_PIT:
-		return 1;
-        break;
-	}
+    /* 
+    * Anything outside of bounds is
+    * user defined and not special.
+    */
+    if (type < 0 || type >= MAX_ATKS)
+    {
+        return 0;
+    }
+    
+    /*
+    * Check vs. LUT of special types.
+    */
+    return special_attack_table[type];
 }
 
 /*

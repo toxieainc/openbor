@@ -1083,18 +1083,19 @@ typedef enum
 } e_arg_types;
 
 
-// Caskey, Damon V.
-// 2013-12-27
-//
-// Attack types. If more types are added,
-// don't forget to add them to script
-// access and account for them in the
-// model load logic.
+/*
+* Caskey, Damon V.
+* 2013-12-27
+*
+* Attack types. If more types are added,
+* don't forget to add them to script
+* access, handle them in model load
+* logic and update any relevant LUTs.
+*/ 
 typedef enum
 {
     ATK_NONE            = -1,   // When we want no attack at all, such as damage_on_landing's default.
     ATK_NORMAL,
-    ATK_NORMAL1			= ATK_NORMAL,
     ATK_NORMAL2,
     ATK_NORMAL3,
     ATK_NORMAL4,
@@ -1119,8 +1120,8 @@ typedef enum
     ATK_LIFESPAN,					// Entity's lifespan timer expires.
     ATK_LOSE,						// Players (with lose animation) when level time expires.
     ATK_PIT,						// Entity falls into a pit and reaches specified depth.
-	ATK_SUB_ENTITY_PARENT_KILL,		// Used to KO a summon when parent is killed.
-	ATK_SUB_ENTITY_UNSUMMON,		// Used to KO a summon on unsummon frame.
+	ATK_SUB_ENTITY_PARENT_KILL,		// KO a summon when parent is killed.
+	ATK_SUB_ENTITY_UNSUMMON,		// KO a summon on unsummon frame.
 	ATK_TIMEOVER,					// Players (without lose animation) when level time expires.
     
 	// Default max attack types (must
@@ -4035,7 +4036,7 @@ e_air_control_legacy_x air_control_interpret_to_legacy_walkoffmove_x(e_air_contr
 e_air_control_legacy_z air_control_interpret_to_legacy_walkoffmove_z(e_air_control air_control_value);
 
 
-
+int get_attack_type_from_string(const char* value, const char* filename);
 int is_attack_type_special(e_attack_types attack_type);
 int is_frozen(entity *e);
 void unfrozen(entity *e);

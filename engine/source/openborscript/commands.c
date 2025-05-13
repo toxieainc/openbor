@@ -9,7 +9,7 @@ void freeCommandList(List *list)
 }
 
 // attention: modifies usercommand to lowercase
-void *getCommandlistCommand(List *list, char *usercommand)
+void *getCommandlistCommand(List *list, char* usercommand)
 {
     if (!usercommand || !usercommand[0])
     {
@@ -25,7 +25,7 @@ fail:
     return NULL;
 }
 
-modelCommands getModelCommand(List *list, char *usercommand)
+modelCommands getModelCommand(List *list, char* usercommand)
 {
     return (modelCommands) getCommandlistCommand(list, usercommand);
 }
