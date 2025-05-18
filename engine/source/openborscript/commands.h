@@ -794,16 +794,16 @@ typedef enum
 void freeCommandList(List *list);
 
 List *createModelCommandList(void);
-modelCommands getModelCommand(List *list, char *usercommand);
+modelCommands getModelCommand(List *list, const char *usercommand);
 
 List *createModelstxtCommandList(void);
-modelstxtCommands getModelstxtCommand(List *list, char *usercommand);
+modelstxtCommands getModelstxtCommand(List *list, const char *usercommand);
 
 List *createLevelCommandList(void);
-levelCommands getLevelCommand(List *list, char *usercommand);
+levelCommands getLevelCommand(List *list, const char *usercommand);
 
 List *createLevelOrderCommandList(void);
-levelOrderCommands getLevelOrderCommand(List *list, char *usercommand);
+levelOrderCommands getLevelOrderCommand(List *list, const char *usercommand);
 
 #endif
 

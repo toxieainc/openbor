@@ -8,39 +8,56 @@ void freeCommandList(List *list)
     free(list);
 }
 
-// attention: modifies usercommand to lowercase
-void *getCommandlistCommand(List *list, char* usercommand)
+/**
+ * getCommandlistCommand
+ * ---------------------
+ * Refactor - Caskey, Damon V.
+ * 2025-05-17
+ * 
+ * Looks up a command in the given list by its name, case-insensitively.
+ *
+ * Notes:
+ *   - The search is case-insensitive.
+ *   - Memory is dynamically allocated for the lowercase copy and freed before return.
+ */
+void* getCommandlistCommand(List* list, const char* usercommand)
 {
-    if (!usercommand || !usercommand[0])
-    {
-        goto fail;
+    if (!list || !usercommand || !usercommand[0]) {
+        return NULL;
     }
-    lc(usercommand, strlen(usercommand));
-    Node *n = List_GetNodeByName(list, usercommand);
-    if(n)
-    {
-        return n->value;
+
+    size_t len = strlen(usercommand);
+    char* buf = (char*)malloc(len + 1);
+    
+    if (!buf){
+        return NULL;
     }
-fail:
-    return NULL;
+
+    memcpy(buf, usercommand, len + 1); // Copy including null terminator
+    lc(buf, len);
+
+    Node* n = List_GetNodeByName(list, buf);
+    free(buf);
+
+    return n ? n->value : NULL;
 }
 
-modelCommands getModelCommand(List *list, char* usercommand)
+modelCommands getModelCommand(List *list, const char* usercommand)
 {
     return (modelCommands) getCommandlistCommand(list, usercommand);
 }
 
-modelstxtCommands getModelstxtCommand(List *list, char *usercommand)
+modelstxtCommands getModelstxtCommand(List *list, const char *usercommand)
 {
     return (modelstxtCommands) getCommandlistCommand(list, usercommand);
 }
 
-levelCommands getLevelCommand(List *list, char *usercommand)
+levelCommands getLevelCommand(List *list, const char *usercommand)
 {
     return (levelCommands) getCommandlistCommand(list, usercommand);
 }
 
-levelOrderCommands getLevelOrderCommand(List *list, char *usercommand)
+levelOrderCommands getLevelOrderCommand(List *list, const char *usercommand)
 {
     return (levelOrderCommands) getCommandlistCommand(list, usercommand);
 }
