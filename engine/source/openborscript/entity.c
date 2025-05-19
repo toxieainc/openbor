@@ -500,7 +500,7 @@ static const entity_property_info entity_properties[] = {
 	.type = VT_PTR },
 
 	{.property = ENTITY_PROPERTY_MODEL_DEFAULT,
-	.id_string = "ENTITY_PROPERTY_MODEL_DATA",
+	.id_string = "ENTITY_PROPERTY_MODEL_DEFAULT",
 	.config_flags = PROPERTY_ACCESS_CONFIG_MACRO_DEFAULT,
 	.offset = PROPERTY_MEMBER_OFFSET(entity, defaultmodel),
 	.type = VT_PTR },
