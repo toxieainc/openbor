@@ -37027,12 +37027,28 @@ int common_try_chase(entity* acting_entity, const entity *target, const bool axi
         ////////////
     }
 
-    if(axis_z)
+    if (axis_z)
     {
-        acting_entity->destz = target->position.z ;
+        acting_entity->destz = target->position.z;
         dz = diff(acting_entity->position.z, acting_entity->destz);
 
-        if(dz > 100 && acting_entity->modeldata.runupdown && validanim(acting_entity, ANI_RUN))
+        int going_up = (acting_entity->destz < acting_entity->position.z);
+        int run_flag_check = 0;
+
+        if (going_up)
+        {
+            run_flag_check =
+                (acting_entity->modeldata.run_config_flags & RUN_CONFIG_Z_UP_ENABLED) &&
+                (acting_entity->modeldata.run_config_flags & RUN_CONFIG_Z_UP_INITIAL);
+        }
+        else
+        {
+            run_flag_check =
+                (acting_entity->modeldata.run_config_flags & RUN_CONFIG_Z_DOWN_ENABLED) &&
+                (acting_entity->modeldata.run_config_flags & RUN_CONFIG_Z_DOWN_INITIAL);
+        }
+
+        if (dz > 100 && run_flag_check && validanim(acting_entity, ANI_RUN))
         {
             acting_entity->velocity.z = acting_entity->modeldata.runspeed / 2;
             acting_entity->running &= ~RUN_STATE_START_X;
@@ -37043,7 +37059,7 @@ int common_try_chase(entity* acting_entity, const entity *target, const bool axi
             acting_entity->velocity.z = acting_entity->modeldata.speed.x / 2;
         }
 
-        if(acting_entity->destz < acting_entity->position.z)
+        if (going_up)
         {
             acting_entity->velocity.z = -acting_entity->velocity.z;
         }

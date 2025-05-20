@@ -3353,14 +3353,13 @@ typedef struct
 
     s_edelay edelay; // Entity level delay adjustment. ~~
 
-    s_child_follow* child_follow; // Child follow (NPC follow distance) properties.
+    s_child_follow* child_follow; // Child follow (NPC follow distance) properties. ~~
 
-    e_run_config_flags run_config_flags; 
+    e_run_config_flags run_config_flags; // Entity running behavior. ~~
 
-    float runspeed; // The speed the character runs at
-    float runjumpheight; // The height the character jumps when running
-    float runjumpdist; // The distance the character jumps when running
-    int runupdown; // Flag to determine if a player will continue to run while pressing up or down; 1 = Enabled. 2 = Can intialize a run up/up, down/down, 4 = Can hold only Z.
+    float runspeed; // The speed the character runs at. ~~
+    float runjumpheight; // The height the character jumps when running. ~~
+	float runjumpdist; // The distance the character jumps when running. ~~
     
     int remove; // Flag to remove a projectile on contact or not
     int noatflash; // Flag to determine if attacking characters attack spawns a flash
