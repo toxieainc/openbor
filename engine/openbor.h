@@ -243,6 +243,22 @@ typedef enum
     EXPLODE_DETONATE_HIT        = (1 << 3)  // Hit another entity.
 } e_explode_state;
 
+/*
+* Caskey, Damon V.
+* 2025-05-21
+* 
+* Remove trigger flags.
+*/
+typedef enum {
+	REMOVE_CONFIG_NONE,
+	REMOVE_CONFIG_HIT = (1 << 0)	// Remove when contact is made.
+} e_remove_config;
+
+typedef struct {
+    const char* name;
+    e_remove_config trigger;
+} s_remove_config_map;
+
 // Caskey, Damon V.
 // 2019-01-25
 //
@@ -3361,7 +3377,7 @@ typedef struct
     float runjumpheight; // The height the character jumps when running. ~~
 	float runjumpdist; // The distance the character jumps when running. ~~
     
-    int remove; // Flag to remove a projectile on contact or not
+    e_remove_config remove_config; // Config to remove entity on trigger. ~~
     int noatflash; // Flag to determine if attacking characters attack spawns a flash
 
 
@@ -4454,6 +4470,7 @@ void ents_link(entity *e1, entity *e2);
 void kill_entity(entity *victim, e_kill_entity_trigger trigger);
 void kill_all();
 
+e_remove_config get_remove_config_from_string(const char* value);
 
 int projectile_wall_deflect(entity *ent);
 

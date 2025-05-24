@@ -272,6 +272,12 @@ static const model_property_info model_properties[] = {
      .offset = PROPERTY_MEMBER_OFFSET(s_model, quake_config),
      .type = VT_INTEGER },
 
+    { .property = MODEL_PROPERTY_REMOVE_CONFIG,
+     .id_string = "MODEL_PROPERTY_REMOVE_CONFIG",
+     .config_flags = PROPERTY_ACCESS_CONFIG_MACRO_DEFAULT,
+     .offset = PROPERTY_MEMBER_OFFSET(s_model, remove_config),
+     .type = VT_INTEGER },
+
     {.property = MODEL_PROPERTY_RISE_INVINCIBLE,
      .id_string = "MODEL_PROPERTY_RISE_INVINCIBLE",
      .config_flags = PROPERTY_ACCESS_CONFIG_MACRO_DEFAULT,

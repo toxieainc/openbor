@@ -1270,6 +1270,7 @@ int mapstrings_transconst(ScriptVariant **varlist, int paramCount)
         ICMPCONST(MODEL_PROPERTY_PATH)
         ICMPCONST(MODEL_PROPERTY_PRIORITY)
         ICMPCONST(MODEL_PROPERTY_QUAKE_CONFIG)
+        ICMPCONST(MODEL_PROPERTY_REMOVE_CONFIG)
         ICMPCONST(MODEL_PROPERTY_RISE_INVINCIBLE)
         ICMPCONST(MODEL_PROPERTY_RUN_CONFIG_FLAGS)
         ICMPCONST(MODEL_PROPERTY_RUN_JUMP_HEIGHT)
@@ -1395,7 +1396,11 @@ int mapstrings_transconst(ScriptVariant **varlist, int paramCount)
         ICMPCONST(QUAKE_CONFIG_DISABLE_SCREEN)
         ICMPCONST(QUAKE_CONFIG_DISABLE_SELF)
         ICMPCONST(QUAKE_CONFIG_NONE)        
-					   
+		
+        /* Remove triggers. */
+        ICMPCONST(REMOVE_CONFIG_HIT)
+	    ICMPCONST(REMOVE_CONFIG_NONE)
+
         /* Rising state. */
         ICMPCONST(RISING_NONE)
         ICMPCONST(RISING_RISE)

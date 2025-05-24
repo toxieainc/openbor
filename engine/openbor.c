@@ -12586,7 +12586,7 @@ s_model *init_model(const int cacheindex, const int unload)
     newchar->diesound           = SAMPLE_ID_NONE;
     newchar->nolife             = 0;			    // default show life = 1 (yes)
     newchar->shadow_config_flags = SHADOW_CONFIG_DEFAULT;
-    newchar->remove             = 1;			    // Flag set to weapons are removed upon hitting an opponent
+    newchar->remove_config     = REMOVE_CONFIG_HIT;	    // Flag set to projectiles are removed upon hitting an opponent
     newchar->throwdist          = default_model_jumpheight * 0.625f;
     newchar->aimove             = AIMOVE1_NONE;
     newchar->aiattack           = -1;
@@ -14532,7 +14532,10 @@ s_model *load_cached_model(char *name, char *owner, char unload)
                 newchar->alpha = GET_INT_ARG(1);
                 break;
             case CMD_MODEL_REMOVE:
-                newchar->remove = GET_INT_ARG(1);
+				value = GET_ARG(1);
+
+                newchar->remove_config = get_remove_config_from_string(value);
+
                 break;
             case CMD_MODEL_SCRIPT:
                 //load the update script
@@ -33016,6 +33019,45 @@ e_shadow_config_flags shadow_get_config_from_legacy_shadowbase(e_shadow_config_f
     return result;
 }
 
+/*
+* Caskey, Damon V.
+* 2025-05-21
+* 
+* Remove trigger parameter reading. As
+* of 2025-05-21, this is a bit much, but
+* we may want to expand with more options
+* later on.
+*/
+static const s_remove_config_map remove_config_map[] = {
+    { "None", REMOVE_CONFIG_NONE },
+    { "Hit", REMOVE_CONFIG_HIT },
+};
+
+#define REMOVE_CONFIG_MAP_SIZE (sizeof(remove_config_map) / sizeof(remove_config_map[0]))
+
+e_remove_config get_remove_config_from_string(const char* value) {
+    if (!value) return REMOVE_CONFIG_NONE;
+
+    // Try to match string (case-insensitive)
+    for (size_t i = 0; i < REMOVE_CONFIG_MAP_SIZE; i++) {
+        if (stricmp(value, remove_config_map[i].name) == 0) {
+            return remove_config_map[i].trigger;
+        }
+    }
+
+    // Try to parse as an integer fallback
+    char* endptr = NULL;
+    long val = strtol(value, &endptr, 10);
+    if (endptr != value && *endptr == '\0' && val >= 0) {
+        return (e_remove_config)val;
+    }
+
+    // Default fallback
+    printf("Warning: Unknown Remove value '%s', defaulting to Hit\n", value);
+    return REMOVE_CONFIG_HIT;
+}
+
+#undef REMOVE_CONFIG_MAP_SIZE
 
 /*
 * Caskey, Damon V.
@@ -33571,13 +33613,6 @@ static const s_attack_type_map attack_type_map[] = {
 #define ATTACK_TYPE_MAP_SIZE (sizeof(attack_type_map) / sizeof(attack_type_map[0]))
 
 #endif // ATTACK_TYPE_MAP_H
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <errno.h>
 
 /*
  * Converts a string into a valid attack type index.
@@ -38149,7 +38184,7 @@ int bomb_try_detonate(entity* acting_entity)
             ent_set_anim(acting_entity, ANI_ATTACK2, 0);
             //acting_entity->animation->move_config_flags &= ~MOVE_CONFIG_SUBJECT_TO_GRAVITY;
         }
-        else if(acting_entity->modeldata.remove && acting_entity->toexplode & EXPLODE_DETONATE_HIT)
+        else if(acting_entity->modeldata.remove_config & REMOVE_CONFIG_HIT && acting_entity->toexplode & EXPLODE_DETONATE_HIT)
         {
             kill_entity(acting_entity, KILL_ENTITY_TRIGGER_BOMB_EXPLODE_ANIMATION_UNAVAILABLE);
         }
@@ -43292,7 +43327,7 @@ entity *knife_spawn(entity *parent, s_projectile *projectile)
     }	
     
 	/* Kill self when we hit. */
-	if (projectile_entity->modeldata.remove)
+	if (projectile_entity->modeldata.remove_config & REMOVE_CONFIG_HIT)
 	{
         projectile_entity->autokill |= AUTOKILL_ATTACK_HIT;
 	}
@@ -43704,7 +43739,7 @@ int star_spawn(entity *parent, s_projectile *projectile)
         ent->modeldata.aiattack = AIATTACK1_NOATTACK;
         
 		// Remove star on contact.
-		if (ent->modeldata.remove)
+		if (ent->modeldata.remove_config & REMOVE_CONFIG_HIT)
 		{
 			ent->autokill |= AUTOKILL_ATTACK_HIT;
 		}
