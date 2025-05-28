@@ -39,6 +39,8 @@ cd ~/.android
 	done
 fi
 
+
+
 #sign all licenses
 if [ ! -d ~/.android/licenses ];
 then
@@ -48,6 +50,10 @@ fi
 
 #set build version, android home temp variable and build
 export ANDROID_SDK_ROOT=~/.android
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+export ANDROID_NDK_HOME=~/.android/ndk/21.4.7075529
+export JAVA_HOME=/home/malik/Desktop/jdk-17.0.1
+
 cd $(dirname $(readlink -f $0))
 cd ../
 ./version.sh

@@ -44,11 +44,18 @@ import android.Manifest;
 import android.os.Environment;
 import android.widget.Toast;
 //msmalik681 added import for permission check
-import android.support.v4.content.ContextCompat;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
 import android.os.Vibrator;
 import android.os.VibrationEffect;
 import android.view.*;
+
+//needed to fix sdk 34+ crashing
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Extended functionality from SDLActivity.
@@ -56,15 +63,20 @@ import android.view.*;
  * Separated for ease of updating both for dependency and this support functionality later.
  */
 public class GameActivity extends SDLActivity {
-  /**
-   * Needed for permission check
-   */
-  public static final int STORAGE_PERMISSION_CODE = 23;
-  
+
   //White Dragon: added statics
   protected static WakeLock wakeLock;
   protected static View decorView;
 
+//needed to fix sdk 34+ crashing
+@Override
+public Intent registerReceiver(@Nullable BroadcastReceiver receiver, IntentFilter filter) {
+    if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
+        return super.registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+    } else {
+        return super.registerReceiver(receiver, filter);
+    }
+}
   //note: White Dragon's vibrator is moved into C code for 2 reasons
   // - avoid modifying SDLActivity.java as it's platform support
   // - reduce round-trip cost/time in call C-function to check for touch-area and whether
@@ -124,9 +136,8 @@ public class GameActivity extends SDLActivity {
     // call parent's implementation
     super.onCreate(savedInstanceState);
     Log.v("OpenBOR", "onCreate called");
-
-    //msmalik681 setup storage access
-    CheckPermissionForMovingPaks();
+    //msmalik681 copy pak for custom apk and notify is paks folder empty
+    CopyPak();
 
     //CRxTRDude - Added FLAG_KEEP_SCREEN_ON to prevent screen timeout.
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -137,54 +148,6 @@ public class GameActivity extends SDLActivity {
     if (!GameActivity.wakeLock.isHeld())
     {
       GameActivity.wakeLock.acquire();
-    }
-  }
-
-  //msmalik681 added permission check for API 23+ for moving .paks
-  private void CheckPermissionForMovingPaks() {
-    if (Build.VERSION.SDK_INT >= STORAGE_PERMISSION_CODE &&
-        getApplicationContext().getPackageName().equals("org.openbor.engine"))
-    {
-      if (ContextCompat.checkSelfPermission(GameActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
-          ContextCompat.checkSelfPermission(GameActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-      {
-        Toast.makeText(this, "Needed permissions not granted!", Toast.LENGTH_LONG).show();
-        ActivityCompat.requestPermissions(GameActivity.this, new String[] {
-          Manifest.permission.WRITE_EXTERNAL_STORAGE,
-          Manifest.permission.READ_EXTERNAL_STORAGE
-        }, STORAGE_PERMISSION_CODE);
-      }
-      else 
-      {
-        CopyPak();
-      }
-    }
-    else
-    {
-      CopyPak();
-    }
-  }
-
-  @Override
-  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
-  {
-    switch (requestCode)
-    {
-      case STORAGE_PERMISSION_CODE:
-      {
-        // If request is cancelled, the result arrays are empty.
-        if (grantResults.length > 0 &&
-            grantResults[0] == PackageManager.PERMISSION_GRANTED)
-        {
-          // permission was granted continue!
-          CopyPak();
-        }          
-        else
-        {
-          // needed permission denied end application!
-          finish();
-        }
-      }
     }
   }
 
