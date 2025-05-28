@@ -6,3 +6,5 @@
 /build
 /keystore.properties
 *.jks
+/app/local.properties
+/app/src/main/assets/*.pak

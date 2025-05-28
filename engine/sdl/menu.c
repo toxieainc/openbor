@@ -517,7 +517,19 @@ static void drawMenu()
 	s_screen* Image = NULL;
 
 	putscreen(vscreen,bgscreen,0,0,NULL);
+	#ifdef ANDROID
+	char no_paks[MAX_FILENAME_LEN] = "No Mods In Paks Folder:\n";
+	strcat(no_paks, paksDir);
+	char no_paks_2[MAX_FILENAME_LEN];
+	strncpy(no_paks_2,no_paks,44);
+	no_paks_2[44]='\0';
+	char *pak_out = no_paks + 44;
+	strcpy(no_paks,pak_out);
+	if(dListTotal < 1) printText((isWide ? 30 : 8), (isWide ? 33 : 24), RED, 0, 0, no_paks_2);
+	if(dListTotal < 1) printText((isWide ? 30 : 8), (isWide ? 43 : 34), RED, 0, 0, no_paks);
+	#else
 	if(dListTotal < 1) printText((isWide ? 30 : 8), (isWide ? 33 : 24), RED, 0, 0, "No Mods In Paks Folder!");
+	#endif
 	for(list = 0; list < dListTotal; list++)
 	{
 		if(list < MAX_MODS_NUM) //Kratus (13-03-21) avoid engine "close" bug
