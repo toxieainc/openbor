@@ -3630,7 +3630,7 @@ typedef struct entity
     // Size defined ints (for time).
     unsigned long	        combotime;							// If not expired, continue to next attack in series combo. ~~
 	unsigned long			guardtime;							// Next time to auto adjust guardpoints. ~~
-	unsigned long			freezetime;							// Used to store at what point the a frozen entity becomes unfrozen. ~~
+	unsigned long			freezetime;							// Used to store at what point a frozen entity becomes unfrozen. ~~
 	unsigned long			invinctime;							// Used to set time for invincibility to expire. ~~
 	unsigned long			knockdowntime;						// When knockdown count is expired. ~~
 	unsigned long			magictime;							// Next time to auto adjust MP. ~~
@@ -3794,7 +3794,7 @@ typedef struct
     unsigned long musicoffset;
     char *name; // must be a name in the model list, so just reference
     int index; // model index
-    int weaponindex; // the spawned entity with an weapon item, this is the index of the item model
+    int weaponindex; // the spawned entity with a weapon item, this is the index of the item model
     int alpha; // Used for alpha effects
     int boss;
     int flip;
@@ -3817,7 +3817,7 @@ typedef struct
     unsigned credit;
     int aggression; // For enemy A.I.
     int spawntype; // Pass 1 when a level spawn.
-    e_entity_type entitytype; // if it's a enemy, player etc..
+    e_entity_type entitytype; // if it's an enemy, player etc..
     entity *parent;
     char *weapon; // spawn with a weapon, since it should be in the model list, so the model must be loaded, just reference its name
     s_model *weaponmodel;

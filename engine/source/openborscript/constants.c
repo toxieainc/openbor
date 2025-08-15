@@ -1661,25 +1661,21 @@ int mapstrings_transconst(ScriptVariant **varlist, int paramCount)
 HRESULT openbor_transconst(ScriptVariant **varlist , ScriptVariant **pretvar, int paramCount)
 {
     static char buf[128];
-    if(paramCount < 1)
+    if (paramCount >= 1)
     {
-        goto transconst_error;
+        //if(varlist[0]->vt == VT_INTEGER) printf("debug: mapstring for openborconstant works!\n");
+
+        mapstrings_transconst(varlist, paramCount);
+
+        if (varlist[0]->vt == VT_INTEGER) // return value already determined by mapstrings
+        {
+            ScriptVariant_Copy((*pretvar), varlist[0]);
+            return S_OK;
+        }
     }
 
-    //if(varlist[0]->vt == VT_INTEGER) printf("debug: mapstring for openborconstant works!\n");
-
-    mapstrings_transconst(varlist, paramCount);
-
-    if(varlist[0]->vt == VT_INTEGER) // return value already determined by mapstrings
-    {
-        ScriptVariant_Copy((*pretvar), varlist[0]);
-        return S_OK;
-    }
-
-transconst_error:
     ScriptVariant_ToString(varlist[0], buf);
     printf("Can't translate constant %s\n", buf);
     *pretvar = NULL;
     return E_FAIL;
 }
-

@@ -143,8 +143,8 @@ const s_defense default_defense =
     .block_damage_adjust    = 0,
     .block_damage_max       = MAX_INT,
     .block_damage_min       = MIN_INT,
-    .blockpower             = 0.f,
-    .blockthreshold         = 0.f,
+    .blockpower             = 0,
+    .blockthreshold         = 0,
     .blockratio             = DEFENSE_BLOCKRATIO_COMPATABILITY_DEFAULT,
     .blocktype              = BLOCK_TYPE_GLOBAL,
     .death_config_flags     = DEATH_CONFIG_MACRO_DEFAULT,
@@ -153,7 +153,7 @@ const s_defense default_defense =
     .damage_min             = MIN_INT,
     .factor                 = 1.f,
     .knockdown              = 1.f,
-    .pain                   = 0.f
+    .pain                   = 0
 };
 
 const s_offense default_offense =
@@ -1029,7 +1029,7 @@ int buffer_append(char **buffer, const char *str, size_t n, size_t *bufferlen, s
         *buffer = realloc(*buffer, *bufferlen = appendlen + *len + 1024);
         if(*buffer == NULL)
         {
-            borShutdown(1, "Unalbe to resize buffer.\n");
+            borShutdown(1, "Unable to resize buffer.\n");
         }
     }
     strncpy(*buffer + *len, str, appendlen);
@@ -1051,7 +1051,7 @@ int handle_txt_include(char *command, ArgList *arglist, char **fn, char *namebuf
             *buf = realloc(*buf, *len + size + strlen(incfile) + strlen(filename) + 100); //leave enough memory for jump command
             if(*buf == NULL)
             {
-                borShutdown(1, "Unalbe to resize buffer. (handle_txt_include)\n");
+                borShutdown(1, "Unable to resize buffer. (handle_txt_include)\n");
                 free(buf2);
                 return 0;
             }
@@ -4301,7 +4301,7 @@ void cachesound(int index, int load)
 // Rewrite by Caskey, Damon V.
 // 2018-03-19
 //
-// Add or remove a sprite to the the sprite list
+// Add or remove a sprite to the sprite list
 // by index.
 //
 // index: Target index in the sprite list.
@@ -4842,12 +4842,12 @@ int nextcolourmapn(s_model *model, int map_index, int player_index)
 
         // This logic attempts to populate used_colors_map array with
 		// every color in use by other players who picking same
-		// character. If there are aren't enough unused map indexes to
+		// character. If there aren't enough unused map indexes to
 		// go around (i.e. three players select a character that only
 		// has two maps), then we return initial map selection.
 
         for(i = 0; i < MAX_PLAYERS; i++)
-        {			
+        {
 			// Compare every player index to player_index argument. If
 			// it's a different index but that index's model matches
 			// player_index's model, then it's another player choosing 
@@ -4961,7 +4961,7 @@ int prevcolourmapn(s_model *model, int map_index, int player_index)
 
 		// This logic attempts to populate used_colors_map array with
 		// every color in use by other players who picking same
-		// character. If there are aren't enough unused map indexes to
+		// character. If there aren't enough unused map indexes to
 		// go around (i.e. three players select a character that only
 		// has two maps), then we return initial map selection.
 
@@ -6636,7 +6636,7 @@ void child_spawn_execute_list(s_child_spawn* head, entity* parent)
 * 2022-05-29
 * 
 * Accept pointer to node in list of child
-* spawns. Apply properties to to spawn
+* spawns. Apply properties to spawn
 * a child entity. Returns pointer to
 * spawned entity.
 */
@@ -9391,7 +9391,7 @@ void prepare_cache_map(size_t size)
 void cache_model(char *name, char *path, int flag)
 {
     int len;
-    printf("Cacheing '%s' from %s\n", name, path);
+    printf("Caching '%s' from %s\n", name, path);
     prepare_cache_map(models_cached + 1);
     memset(&model_cache[models_cached], 0, sizeof(model_cache[models_cached]));
 
@@ -12497,7 +12497,7 @@ size_t lcmScriptDeleteMain(char **buf)
                 len = i;
                 break;
             } else continue;
-            if (i <= 0) break;
+            //if (i <= 0) break;
         }
 
         len = len-pos;
@@ -12641,7 +12641,7 @@ s_model *init_model(const int cacheindex, const int unload)
     /* 
     * Faction data. Faction type properties 
     * get defaults set downstream depending 
-    * on the the model's own type.
+    * on the model's own type.
     */
 
     newchar->faction = (s_faction){
@@ -13694,7 +13694,6 @@ s_model *load_cached_model(char *name, char *owner, char unload)
                 offense_setup_from_arg(filename, command, newchar->offense, &arglist, OFFENSE_PARAMETER_FACTOR);
                 break;
 
-            break;
             case CMD_MODEL_HEIGHT:
                 newchar->size.y = GET_INT_ARG(1);
                 break;
@@ -14842,7 +14841,7 @@ s_model *load_cached_model(char *name, char *owner, char unload)
                 child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->config = (CHILD_SPAWN_CONFIG_AUTOKILL_HIT | CHILD_SPAWN_CONFIG_BEHAVIOR_BOMB | CHILD_SPAWN_CONFIG_FACTION_DAMAGE_PARENT | CHILD_SPAWN_CONFIG_FACTION_HOSTILE_PARENT | CHILD_SPAWN_CONFIG_FACTION_INDIRECT_PARENT | CHILD_SPAWN_CONFIG_LAUNCH_TOSS | CHILD_SPAWN_CONFIG_MOVE_CONFIG_PARAMETER | CHILD_SPAWN_CONFIG_RELATIONSHIP_OWNER);
                 child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->aimove = AIMOVE1_BOMB;
                 child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->direction_adjust = DIRECTION_ADJUST_SAME;
-                child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->move_config_flags = (MOVE_CONFIG_NO_ADJUST_BASE | MOVE_CONFIG_SUBJECT_TO_HOLE | MOVE_CONFIG_SUBJECT_TO_PLATFORM | MOVE_CONFIG_SUBJECT_TO_WALL | MOVE_CONFIG_SUBJECT_TO_MAX_Z | MOVE_CONFIG_SUBJECT_TO_MIN_Z | MOVE_CONFIG_SUBJECT_TO_PLATFORM);
+                child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->move_config_flags = (MOVE_CONFIG_NO_ADJUST_BASE | MOVE_CONFIG_SUBJECT_TO_HOLE | MOVE_CONFIG_SUBJECT_TO_PLATFORM | MOVE_CONFIG_SUBJECT_TO_WALL | MOVE_CONFIG_SUBJECT_TO_MAX_Z | MOVE_CONFIG_SUBJECT_TO_MIN_Z);
                 
                 break;
 
@@ -14855,7 +14854,7 @@ s_model *load_cached_model(char *name, char *owner, char unload)
                 child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->config = (CHILD_SPAWN_CONFIG_AUTOKILL_HIT | CHILD_SPAWN_CONFIG_BEHAVIOR_SHOT | CHILD_SPAWN_CONFIG_FACTION_DAMAGE_PARENT | CHILD_SPAWN_CONFIG_FACTION_HOSTILE_PARENT | CHILD_SPAWN_CONFIG_FACTION_INDIRECT_PARENT | CHILD_SPAWN_CONFIG_GRAVITY_OFF | CHILD_SPAWN_CONFIG_LAUNCH_THROW | CHILD_SPAWN_CONFIG_MOVE_CONFIG_PARAMETER | CHILD_SPAWN_CONFIG_RELATIONSHIP_OWNER);
                 child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->aimove = AIMOVE1_ARROW;
                 child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->direction_adjust = DIRECTION_ADJUST_SAME;
-                child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->move_config_flags = (MOVE_CONFIG_NO_ADJUST_BASE | MOVE_CONFIG_SUBJECT_TO_HOLE | MOVE_CONFIG_SUBJECT_TO_PLATFORM | MOVE_CONFIG_SUBJECT_TO_WALL | MOVE_CONFIG_SUBJECT_TO_MAX_Z | MOVE_CONFIG_SUBJECT_TO_MIN_Z | MOVE_CONFIG_SUBJECT_TO_PLATFORM);
+                child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->move_config_flags = (MOVE_CONFIG_NO_ADJUST_BASE | MOVE_CONFIG_SUBJECT_TO_HOLE | MOVE_CONFIG_SUBJECT_TO_PLATFORM | MOVE_CONFIG_SUBJECT_TO_WALL | MOVE_CONFIG_SUBJECT_TO_MAX_Z | MOVE_CONFIG_SUBJECT_TO_MIN_Z);
                 child_spawn_upsert_property(&temp_child_spawn_head, temp_child_spawn_index)->takedamage = arrow_takedamage;
 
                 break;
@@ -16029,7 +16028,7 @@ s_model *load_cached_model(char *name, char *owner, char unload)
 
                 /*
                 * Translate text value into a pre-defined forcemap constant.
-                * Wen applying a pre-defined forcemap, we�ll look at the model
+                * When applying a pre-defined forcemap, we�ll look at the model
                 * and try to find its appropriate index. For example, if the
                 * pre-defined BURN is used, forcemap will apply the model�s
                 * designated burn. This allows use of effect maps without the
@@ -16620,10 +16619,10 @@ s_model *load_cached_model(char *name, char *owner, char unload)
                 break;
 
             case CMD_MODEL_FORCEMAP:
-                
+
                 /*
                 * Translate text value into a pre-defined forcemap constant.
-                * Wen applying a pre-defined forcemap, we�ll look at the model
+                * When applying a pre-defined forcemap, we�ll look at the model
                 * and try to find its appropriate index. For example, if the
                 * pre-defined BURN is used, forcemap will apply the model�s
                 * designated burn. This allows use of effect maps without the
@@ -16902,7 +16901,7 @@ s_model *load_cached_model(char *name, char *owner, char unload)
 
                 /*
                 * Delete nodes from frame object lists
-                * that don't have valid data (i.e no 
+                * that don't have valid data (i.e. no 
                 * coordinates defined at all or the 
                 * coordinates X/Y/H/W are all 0).
                 * 
@@ -22138,7 +22137,7 @@ void draw_visual_debug()
 			// boxes, which is what the draw_box_on_entity() funciton
 			// is meant for. For Y axis, We need to invert the value, 
 			// and place them in opposiing parameters (Max Y into 
-			// function's min Y parameter, and and min Y into function's
+			// function's min Y parameter, and min Y into function's
 			// max Y parameter).
 
 			range_y_min =  -entity->animation->range.y.min;
@@ -28518,7 +28517,7 @@ void update_health()
 
             // 1 Only recover MP > mpstableval.
             // 2 No recover. Drop MP if MP < mpstableval.
-            // 3 Both: recover if MP if MP < mpstableval and drop if MP > mpstableval.
+            // 3 Both: recover if MP < mpstableval and drop if MP > mpstableval.
             // 4 Gain until stable, then fall to stable.
 			// 0 Default. Recover MP at all times.
 
@@ -29622,7 +29621,7 @@ void display_ents()
                                 {
                                     alty = (int)(e->position.y - (other->position.y + other->animation->platform[other->animpos][PLATFORM_HEIGHT]));
                                     temp1 = -1 * (e->position.y - (other->position.y + other->animation->platform[other->animpos][PLATFORM_HEIGHT])) * light.x / 256; // xshift
-                                    temp2 = (float)(-e->position.y * light.y / 256);
+                                    temp2 = -e->position.y * light.y / 256;
 
                                     qx = (int)(e->position.x - scrx);
                                     qy = (int)(e->position.z - scry - other->position.y - other->animation->platform[other->animpos][PLATFORM_HEIGHT]); // + (other->animation->platform[other->animpos][PLATFORM_DEPTH]/2)
@@ -30757,7 +30756,7 @@ entity *normal_find_target(int anim, int detect_adj)
             continue;
         }
 
-        // If anim is defined, then then target must be
+        // If anim is defined, then target must be
         // in range of animation.
         if(anim >= 0)
         {
@@ -44065,7 +44064,7 @@ int obstacle_takedamage(entity *other, s_attack *attack, int fall_flag, s_defens
 void initialize_item_carry(entity *ent, s_spawn_entry *spawn_entry)
 {
     // It's possible to call this from script, so if
-    // if there is already memory for an item allocated
+    // there is already memory for an item allocated
     // here, clear it out to make sure we don't end up
     // with any memory leaks.
     if(ent->item_properties)
@@ -45607,12 +45606,12 @@ int recordInputs()
     {
         if ( playrecstatus->synctime%window >= window-2 ) // last is NULL bytes
         {
-            playrecstatus->buffer = (RecKeys*)realloc(playrecstatus->buffer,sizeof(RecKeys)*((int)(trunc(playrecstatus->synctime/window)+1)*window+window));
+            playrecstatus->buffer = (RecKeys*)realloc(playrecstatus->buffer,sizeof(RecKeys)*((playrecstatus->synctime/window+1)*window+window));
             if (playrecstatus->buffer == NULL)
             {
                 printf("Error to allocate buffer in record inputs mode.\n");
                 return 0;
-            } else memset(playrecstatus->buffer+(playrecstatus->synctime+1),0,(int)(trunc(playrecstatus->synctime/window)+1)*window+window-(playrecstatus->synctime+1)-1); // -2 becouse -1 is to 0 to size-1
+            } else memset(playrecstatus->buffer+(playrecstatus->synctime+1),0,(playrecstatus->synctime/window+1)*window+window-(playrecstatus->synctime+1)-1); // -2 because -1 is to 0 to size-1
         }
     }
 
@@ -48885,7 +48884,7 @@ readfile:
             }
             else if(stricmp(command, "colourdepth") == 0)
             {
-                printf("\nColordepth is depreciated. All modules are displayed with a 32bit color screen.\n\n");
+                printf("\nColordepth is not supported anymore. All modules are displayed with a 32bit color screen.\n\n");
             }
             else if(stricmp(command, "forcemode") == 0) {}
             else if(command && command[0])

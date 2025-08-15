@@ -529,7 +529,7 @@ HRESULT Interpreter_CompileInstructions(Interpreter *pinterpreter)
             COMPILEUNARYOP;
             break;
 
-            //Use the BINARYOP macro to do a multipy
+            //Use the BINARYOP macro to do a multiply
         case MUL:
             //Use the BINARYOP macro to do a divide
         case DIV:
@@ -539,7 +539,7 @@ HRESULT Interpreter_CompileInstructions(Interpreter *pinterpreter)
         case ADD:
             //Use the BINARYOP macro to do a subtract
         case SUB:
-            //Use the BINARYOP macro to do an left shift
+            //Use the BINARYOP macro to do a left shift
         case SHL:
             //Use the BINARYOP macro to do a right shift
         case SHR:
@@ -573,7 +573,7 @@ HRESULT Interpreter_CompileInstructions(Interpreter *pinterpreter)
 
             //Create a new CSymbol and add it to the symbol table
         case PARAM:
-            Instruction_NewData(pInstruction); //cache the the new variant
+            Instruction_NewData(pInstruction); //cache the new variant
             pToken = pInstruction->theToken;
             pSymbol = (Symbol *)malloc(sizeof(Symbol));
             Symbol_Init(pSymbol, pToken->theSource, 0, NULL, pInstruction);

@@ -12,7 +12,9 @@
 #include "gfxtypes.h"
 #include "types.h"
 #include "yuv.h"
+#if SDL
 #include "SDL.h"
+#endif
 
 extern u8 pDeltaBuffer[480 * 2592];
 extern int opengl;
