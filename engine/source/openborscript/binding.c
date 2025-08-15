@@ -119,7 +119,7 @@ const s_property_access_map bind_get_property_map(const void* acting_object_para
 * 2023-03-03
 *
 * Return a property. Requires
-* a object pointer and property
+* an object pointer and property
 * constant to access.
 */
 HRESULT openbor_get_bind_property(const ScriptVariant* const* varlist, ScriptVariant** const pretvar, const int paramCount)

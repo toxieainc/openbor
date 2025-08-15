@@ -213,15 +213,11 @@ int myfilenamecmp(const char *a, size_t asize, const char *b, size_t bsize)
         {
             return 1;
         }
-        if (*ca == *cb)
-        {
-            goto cont;
-        }
-        if (tolowerOneChar(ca) != tolowerOneChar(cb))
+        if ((*ca != *cb) && (tolowerOneChar(ca) != tolowerOneChar(cb)))
         {
             return 1;
         }
-cont:
+
         ca++;
         cb++;
     }
@@ -1337,18 +1333,15 @@ void packfile_music_read(fileliststruct *filelist, int dListTotal)
                 p = strrchr(pn.namebuf, '.');
                 if((p && (!stricmp(p, ".bor") || !stricmp(p, ".ogg"))) || (stristr(pn.namebuf, "music")))
                 {
-                    if(!stristr(pn.namebuf, ".bor") && !stristr(pn.namebuf, ".ogg"))
-                    {
-                        goto nextpak;
-                    }
-                    if(filelist[i].nTracks < MAX_TRACKS)
+                    if ((stristr(pn.namebuf, ".bor") || stristr(pn.namebuf, ".ogg")) && (filelist[i].nTracks < MAX_TRACKS))
                     {
                         packfile_get_titlename(pn.namebuf, filelist[i].bgmFileName[filelist[i].nTracks]);
                         filelist[i].bgmTracks[filelist[i].nTracks] = off;
                         filelist[i].nTracks++;
                     }
                 }
-nextpak:
+
+                // nextpak:
                 off += pn.pns_len;
                 if(fseek(fd, off, SEEK_SET) < 0)
                 {

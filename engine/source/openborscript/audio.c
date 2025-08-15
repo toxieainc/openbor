@@ -107,7 +107,7 @@ const s_property_access_map music_channel_get_property_map(const void* acting_ob
 * 2024-01-31
 *
 * Return a property. Requires
-* a object pointer and property
+* an object pointer and property
 * constant to access.
 */
 HRESULT openbor_get_music_channel_property(const ScriptVariant* const* varlist, ScriptVariant** const pretvar, const int paramCount)

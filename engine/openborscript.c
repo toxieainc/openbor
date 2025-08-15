@@ -21,7 +21,7 @@
 		 Be sure to call ScriptVariant_Clear if you want to use free to delete those variants.
 
 		 If you want to copy a ScriptVariant from another, use ScriptVariant_Copy instead of assignment,
-		 not because it is faster, but this method is neccessary for string types.
+		 not because it is faster, but this method is necessary for string types.
 
 		 If you want to change types of an ScriptVariant, use ScriptVariant_ChangeType, don't change vt directly.
 
@@ -5005,7 +5005,7 @@ HRESULT openbor_getentityproperty(ScriptVariant **varlist , ScriptVariant **pret
         case _ep_running_movez:
         {
             ScriptVariant_ChangeType(*pretvar, VT_INTEGER);
-            (*pretvar)->lVal = (LONG)(ent->modeldata.run_config_flags & (RUN_CONFIG_Z_DOWN_ENABLED | RUN_CONFIG_Z_DOWN_ENABLED));
+            (*pretvar)->lVal = (LONG)(ent->modeldata.run_config_flags & RUN_CONFIG_Z_DOWN_ENABLED);
             break;
         }
         }
@@ -5130,7 +5130,7 @@ HRESULT openbor_getentityproperty(ScriptVariant **varlist , ScriptVariant **pret
 
         /*
         Request from animation or frame that doesn't exist = shutdown.
-        Let's be more user friendly then that; return empty so modder can evaluate
+        Let's be more user friendly than that; return empty so modder can evaluate
         and take action accordingly.*/
         if(!validanim(ent, arg->lVal) || !(ent->modeldata.animation[arg->lVal]->numframes >= arg1->lVal))
         {
@@ -10851,7 +10851,7 @@ HRESULT openbor_savefilestream(ScriptVariant **varlist , ScriptVariant **pretvar
     arg = varlist[0];
     if(FAILED(ScriptVariant_IntegerValue(arg, &filestreamindex)))
     {
-        printf("You must give a valid filestrema handle for savefilestream!\n");
+        printf("You must give a valid filestream handle for savefilestream!\n");
         return E_FAIL;
     }
 
@@ -11297,7 +11297,6 @@ HRESULT openbor_checkrange(ScriptVariant **varlist , ScriptVariant **pretvar, in
 {
     entity *ent = NULL, *target = NULL;
     LONG ani = 0;
-    extern int max_animations;
 
     if(paramCount < 2)
     {
@@ -13700,7 +13699,6 @@ shutdown_error:
 HRESULT openbor_jumptobranch(ScriptVariant **varlist , ScriptVariant **pretvar, int paramCount)
 {
     LONG ltemp;
-    extern char branch_name[MAX_NAME_LEN + 1];
     *pretvar = NULL;
     if(paramCount < 1)
     {
@@ -15001,7 +14999,7 @@ HRESULT openbor_setdrawmethod(ScriptVariant **varlist , ScriptVariant **pretvar,
     return S_OK;
 
 setdrawmethod_error:
-    printf("Function need a valid entity handle and at least 1 interger parameter, setdrawmethod(entity, int flag, int scalex, int scaley, int flipx, int flipy, int shiftx, int alpha, int remap, int fillcolor, int rotate, int fliprotate, int transparencybg, void* colourmap, centerx, centery)\n");
+    printf("Function need a valid entity handle and at least 1 integer parameter, setdrawmethod(entity, int flag, int scalex, int scaley, int flipx, int flipy, int shiftx, int alpha, int remap, int fillcolor, int rotate, int fliprotate, int transparencybg, void* colourmap, centerx, centery)\n");
     return E_FAIL;
 }
 
@@ -15046,7 +15044,7 @@ HRESULT openbor_updateframe(ScriptVariant **varlist , ScriptVariant **pretvar, i
     return S_OK;
 
 updateframe_error:
-    printf("Function need a valid entity handle and at an interger parameter: updateframe(entity, int frame)\n");
+    printf("Function need a valid entity handle and at an integer parameter: updateframe(entity, int frame)\n");
     return E_FAIL;
 }
 

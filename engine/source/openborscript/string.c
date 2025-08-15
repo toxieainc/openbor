@@ -120,16 +120,13 @@ sl_error:
 //strlength(char string);
 HRESULT openbor_strlength(ScriptVariant **varlist , ScriptVariant **pretvar, int paramCount)
 {
-    if(paramCount < 1 || varlist[0]->vt != VT_STR)
+    if(paramCount >= 1 && varlist[0]->vt == VT_STR)
     {
-        goto strlength_error;
+        ScriptVariant_ChangeType(*pretvar, VT_INTEGER);
+        (*pretvar)->lVal = strlen((char*)StrCache_Get(varlist[0]->strVal));
+        return S_OK;
     }
 
-    ScriptVariant_ChangeType(*pretvar, VT_INTEGER);
-    (*pretvar)->lVal = strlen((char *)StrCache_Get(varlist[0]->strVal));
-    return S_OK;
-
-strlength_error:
     printf("Error, strlength({string}): Invalid or missing parameter. Strlength must be passed a valid {string}.\n");
     *pretvar = NULL;
     return E_FAIL;
@@ -139,17 +136,14 @@ strlength_error:
 HRESULT openbor_strwidth(ScriptVariant **varlist , ScriptVariant **pretvar, int paramCount)
 {
     LONG ltemp;
-    if(paramCount < 2 || varlist[0]->vt != VT_STR ||
-            FAILED(ScriptVariant_IntegerValue(varlist[1], &ltemp)))
+    if(paramCount >= 2 && varlist[0]->vt == VT_STR &&
+        SUCCEEDED(ScriptVariant_IntegerValue(varlist[1], &ltemp)))
     {
-        goto strwidth_error;
+        ScriptVariant_ChangeType(*pretvar, VT_INTEGER);
+        (*pretvar)->lVal = font_string_width((int)ltemp, (char*)StrCache_Get(varlist[0]->strVal));
+        return S_OK;
     }
 
-    ScriptVariant_ChangeType(*pretvar, VT_INTEGER);
-    (*pretvar)->lVal = font_string_width((int)ltemp, (char *)StrCache_Get(varlist[0]->strVal));
-    return S_OK;
-
-strwidth_error:
     printf("Error, strwidth({string}, {font}): Invalid or missing parameter.\n");
     *pretvar = NULL;
     return E_FAIL;

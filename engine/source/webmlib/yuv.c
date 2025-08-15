@@ -269,7 +269,7 @@ static void Color16DitherYV12Mod1X( unsigned char *lum, unsigned char *cr,
         x = cols_2;
         while( x-- )
         {
-            register int L;
+            int L;
 
             cr_r   = 0*768+256 + colortab[ *cr + 0*256 ];
             crb_g  = 1*768+256 + colortab[ *cr + 1*256 ]
@@ -338,7 +338,7 @@ static void Color32DitherYV12Mod1X( unsigned char *lum, unsigned char *cr,
         x = cols_2;
         while( x-- )
         {
-            register int L;
+            int L;
 
             cr_r   = 0*768+256 + colortab[ *cr + 0*256 ];
             crb_g  = 1*768+256 + colortab[ *cr + 1*256 ]
